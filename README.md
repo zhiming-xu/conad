@@ -7,7 +7,7 @@ Please cite our papers if you use the model or this code in your own work:
 ```
 @inproceedings{xu_conad_2022,
   title = {Contrastive Attributed Network Anomaly Detection with Data Augmentation},
-  author = {Xu, Zhiming and Huang, Xiao and Zhao, Yue and Dong, Yushun, and Li, Jundong},
+  author = {Xu, Zhiming and Huang, Xiao and Zhao, Yue and Dong, Yushun and Li, Jundong},
   booktitle={Pacific-Asian Conference on Knowledge Discovery and Data Mining (PAKDD)},
   year = {2022}
 }
