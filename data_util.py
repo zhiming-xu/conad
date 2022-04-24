@@ -228,18 +228,22 @@ def make_anomalies(adj, feat, rate=.1, clique_size=30, sourround=50, scale_facto
         if prob > rate: continue
         label_aug[i] = 1
         one_fourth = np.random.randint(0, 4)
-        if one_fourth == 0 or one_fourth == 1:
+        if one_fourth == 0:
             # add clique
             new_neighbors = np.random.choice(np.arange(num_nodes), clique_size, replace=False)
             for n in new_neighbors:
-                adj[n][i] = 1
-                adj[i][n] = 1
-        elif one_fourth == 2 or one_fourth == 3:
+                adj_aug[n][i] = 1
+                adj_aug[i][n] = 1
+        elif one_fourth == 1:
             # drop all connection
-            neighbors = np.nonzero(adj[i])[0]
+            neighbors = np.nonzero(adj[i])
+            if not neighbors.any():
+                    continue
+                else: 
+                    neighbors = neighbors[0]
             for n in neighbors:
-                adj[i][n] = 0
-                adj[n][i] = 0
+                adj_aug[i][n] = 0
+                adj_aug[n][i] = 0
         elif one_fourth == 2:
             # attrs
             candidates = np.random.choice(np.arange(num_nodes), sourround, replace=False)
@@ -249,14 +253,14 @@ def make_anomalies(adj, feat, rate=.1, clique_size=30, sourround=50, scale_facto
                 if dev > max_dev:
                     max_dev = dev
                     max_idx = c
-            feat[i] = feat[max_idx]
+            feat_aug[i] = feat[max_idx]
         else:
             # scale attr
             prob = np.random.uniform(0, 1)
             if prob > 0.5:
-                feat[i] *= scale_factor
+                feat_aug[i] *= scale_factor
             else:
-                feat[i] /= scale_factor
+                feat_aug[i] /= scale_factor
     return adj_aug, feat_aug, label_aug
 
 
