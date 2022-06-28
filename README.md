@@ -2,6 +2,9 @@
 This repository contains the code for our PAKDD'22 paper, *Contrastive Attributed Network Anomaly Detection with Data Augmentation*, as well as three other GNN baselines used as comparison.
 The evaluation data are included in the data/ folder. To run these models, use the [main.py](main.py) script and corresponding training function in it.
 
+### Download Data
+The datasets used in this paper are stored as git lfs objects, and can be downloaded with `git lfs pull`.
+
 ### Cite
 Please cite our paper if you use the model or this code in your own work:
 ```
